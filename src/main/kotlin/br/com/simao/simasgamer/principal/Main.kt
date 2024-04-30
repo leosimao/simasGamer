@@ -7,6 +7,7 @@ import com.google.gson.Gson
 import java.util.Scanner
 
 
+
 fun main() {
     val getTeclado = Scanner(System.`in`)
     println("Digite o id do jogo desejado!")

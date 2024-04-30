@@ -2,9 +2,9 @@ package br.com.simao.simasgamer.modelo
 
 import kotlin.random.Random
 
-data class Gamer(var nomeGamer:String, var emailGamer:String){
-    var dataNascimentoGamer:String? = null
-    var usuarioGamer:String? = null
+data class Usuario(var nomeUsuario:String, var emailUsuario:String){
+    var dataNascimentoUsuario:String? = null
+    var nicknameUsuario:String? = null
         set(usuarioGamer) {
             field = usuarioGamer
             if(idGamer.isNullOrBlank()){
@@ -15,8 +15,8 @@ data class Gamer(var nomeGamer:String, var emailGamer:String){
         private set
 
     init {
-        this.emailGamer = validarEmail()
-        this.nomeGamer = validarNome()
+        this.emailUsuario = validarEmail()
+        this.nomeUsuario = validarNome()
     }
 
     constructor(
@@ -25,8 +25,8 @@ data class Gamer(var nomeGamer:String, var emailGamer:String){
         dataNascimentoGamer: String,
         usuarioGamer: String
     ): this(nomeGamer, emailGamer) {
-        this.dataNascimentoGamer = dataNascimentoGamer
-        this.usuarioGamer = usuarioGamer
+        this.dataNascimentoUsuario = dataNascimentoGamer
+        this.nicknameUsuario = usuarioGamer
         criarIdInterno()
     }
 
@@ -34,23 +34,23 @@ data class Gamer(var nomeGamer:String, var emailGamer:String){
         val randomNumero = Random.nextInt(1000)
         val tagGamer = String.format("%04d", randomNumero)
 
-        this.idGamer = "$usuarioGamer#$tagGamer"
+        this.idGamer = "$nicknameUsuario#$tagGamer"
     }
 
     private fun validarEmail(): String{
         val regexEmail = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
-        if (regexEmail.matches(emailGamer)){
-            return emailGamer
+        if (regexEmail.matches(emailUsuario)){
+            return emailUsuario
         } else {
-            throw IllegalArgumentException("Email informado está inválido")
+            throw IllegalArgumentException("Email informado estï¿½ invï¿½lido")
         }
     }
 
     private fun validarNome(): String {
-        if(!nomeGamer.isNullOrBlank()){
-            return nomeGamer
+        if(!nomeUsuario.isNullOrBlank()){
+            return nomeUsuario
         } else
-            throw IllegalArgumentException("Nome do jogador está inválido")
+            throw IllegalArgumentException("Nome do jogador estï¿½ invï¿½lido")
     }
 
 }
