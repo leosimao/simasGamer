@@ -1,11 +1,14 @@
-package br.com.simao.simasgamer.API
+package br.com.simao.simasgamer.api
 
 import br.com.simao.simasgamer.servicos.modelos.Gamer
-import br.com.simao.simasgamer.API.InfoGamer.InfoGamerJogo
-import br.com.simao.simasgamer.API.InfoJogo.InfoJogo
-import br.com.simao.simasgamer.servicos.modelos.Jogo
+import br.com.simao.simasgamer.api.deserializer.DeserializerGamer
+import br.com.simao.simasgamer.api.deserializer.DeserializerCheapShark
+import br.com.simao.simasgamer.api.deserializer.DeserializerJogoLocal
+import br.com.simao.simasgamer.servicos.modelos.JogoCheapShark
+import br.com.simao.simasgamer.servicos.modelos.JogoLocal
 import br.com.simao.simasgamer.utils.converterInfoGamerToGamer
-import br.com.simao.simasgamer.utils.converterInfoJogoToJogo
+import br.com.simao.simasgamer.utils.converterInfoJogoCheapSharkToJogo
+import br.com.simao.simasgamer.utils.converterInfoJogoLocalToJogo
 import br.com.simao.simasgamer.utils.fromListJson
 import com.google.gson.Gson
 import java.net.URI
@@ -31,14 +34,21 @@ class ConsumoAPI {
     fun getListGamer(): List<Gamer>{
         val gsonGamer = Gson()
         val responseGamer = realizarRequest(URL_LOCAL_GAMERS)
-        val listInfoGamer = gsonGamer.fromListJson<InfoGamerJogo>(responseGamer)
+        val listInfoGamer = gsonGamer.fromListJson<DeserializerGamer>(responseGamer)
         return listInfoGamer.map { infoGamer -> infoGamer.converterInfoGamerToGamer() }
     }
 
-    fun getListJogoPorNome(tituloJogo: String): List<Jogo>{
+    fun getListJogoPorNome(tituloJogo: String): List<JogoCheapShark>{
         val gsonJogo = Gson()
         val responseJogo = realizarRequest("${URl_API_CHEAP_SHARK}games?title=${tituloJogo}")
-        val listInfoJogo = gsonJogo.fromListJson<InfoJogo>(responseJogo)
-        return listInfoJogo.map { infoJogo -> infoJogo.converterInfoJogoToJogo() }
+        val listInfoJogo = gsonJogo.fromListJson<DeserializerCheapShark>(responseJogo)
+        return listInfoJogo.map { infoJogo -> infoJogo.converterInfoJogoCheapSharkToJogo() }
+    }
+
+    fun getListJogoLocal(): List<JogoLocal>{
+        val gsonJogo = Gson()
+        val responseJogo = realizarRequest(URL_LOCAL_JOGOS)
+        val listInfoJogoLocal = gsonJogo.fromListJson<DeserializerJogoLocal>(responseJogo)
+        return listInfoJogoLocal.map { infoJogoLocal -> infoJogoLocal.converterInfoJogoLocalToJogo() }
     }
 }

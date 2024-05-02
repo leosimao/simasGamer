@@ -1,9 +1,9 @@
-package br.com.simao.simasgamer.API.InfoGamer
+package br.com.simao.simasgamer.api.deserializer
 
 import com.google.gson.annotations.SerializedName
 
 
-data class InfoGamerJogo(
+data class DeserializerGamer(
     @SerializedName("nome") val nomeGamer: String,
     @SerializedName("email") val emailGamer: String,
     @SerializedName("dataNascimento") val dataNascimentoGamer: String,

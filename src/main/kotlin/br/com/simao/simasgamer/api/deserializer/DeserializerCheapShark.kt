@@ -1,8 +1,8 @@
-package br.com.simao.simasgamer.API.InfoJogo
+package br.com.simao.simasgamer.api.deserializer
 
 import com.google.gson.annotations.SerializedName
 
-data class InfoJogo(
+data class DeserializerCheapShark(
     @SerializedName("gameID") val idJogo: Int,
     @SerializedName("steamAppID") val idJogoAppSteam: Int?,
     @SerializedName("external") val nomeJogo: String,
