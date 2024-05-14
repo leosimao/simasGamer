@@ -1,11 +1,11 @@
 package br.com.simao.simasgamer.api
 
-import br.com.simao.simasgamer.servicos.modelos.Gamer
+import br.com.simao.simasgamer.services.dto.Gamer
 import br.com.simao.simasgamer.api.deserializer.DeserializerGamer
 import br.com.simao.simasgamer.api.deserializer.DeserializerCheapShark
 import br.com.simao.simasgamer.api.deserializer.DeserializerJogoLocal
-import br.com.simao.simasgamer.servicos.modelos.JogoCheapShark
-import br.com.simao.simasgamer.servicos.modelos.JogoLocal
+import br.com.simao.simasgamer.services.dto.JogoCheapShark
+import br.com.simao.simasgamer.services.dto.JogoLocal
 import br.com.simao.simasgamer.utils.converterInfoGamerToGamer
 import br.com.simao.simasgamer.utils.converterInfoJogoCheapSharkToJogo
 import br.com.simao.simasgamer.utils.converterInfoJogoLocalToJogo

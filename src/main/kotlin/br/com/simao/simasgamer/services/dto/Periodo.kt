@@ -1,4 +1,4 @@
-package br.com.simao.simasgamer.servicos.modelos
+package br.com.simao.simasgamer.services.dto
 
 import java.time.LocalDate
 import java.time.Period
