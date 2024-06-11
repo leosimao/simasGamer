@@ -1,9 +1,9 @@
-package com.br.simas.gamer.api
+package com.br.simas.gamer.model.api
 
-import com.br.simas.gamer.api.deserializer.DeserializerCheapShark
+import com.br.simas.gamer.model.api.deserializer.DeserializerInfoJogoCheapShark
 import com.br.simas.gamer.model.domain.Jogo
 import com.br.simas.gamer.utils.converterInfoJogoCheapSharkToJogo
-import com.br.simas.gamer.utils.fromListJson
+import com.br.simas.gamer.utils.fromJsonId
 import com.google.gson.Gson
 import java.net.URI
 import java.net.http.HttpClient
@@ -23,10 +23,10 @@ class ConsumoAPI {
         return response
     }
 
-    fun getListJogoPorNome(tituloJogo: String): List<Jogo>{
+    fun getJogoById(idJogo: String): Jogo {
         val gsonJogo = Gson()
-        val responseJogo = realizarRequest("${URl_API_CHEAP_SHARK}games?title=${tituloJogo}")
-        val listInfoJogo = gsonJogo.fromListJson<DeserializerCheapShark>(responseJogo)
-        return listInfoJogo.map { infoJogo -> infoJogo.converterInfoJogoCheapSharkToJogo() }
+        val responseJogo = realizarRequest("${URl_API_CHEAP_SHARK}games?id=$idJogo")
+        val infoJogo = gsonJogo.fromJsonId<DeserializerInfoJogoCheapShark>(responseJogo)
+        return infoJogo.jogoCheapshark.converterInfoJogoCheapSharkToJogo()
     }
 }

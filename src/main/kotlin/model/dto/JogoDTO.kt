@@ -1,6 +1,6 @@
-package com.br.simas.gamer.model.domain
+package com.br.simas.gamer.model.dto
 
-data class Jogo(
+data class JogoDTO (
     val nomeJogo: String,
     val steamId: String,
     val capaJogo: String
